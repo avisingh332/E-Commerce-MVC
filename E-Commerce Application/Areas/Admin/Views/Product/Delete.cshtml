@@ -1,0 +1,43 @@
+﻿@model Product
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class=" text-dark py-2">Edit Product</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <div class="border p-3 mt-4">
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Title" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Title" class="ms-2"></label>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <textarea asp-for="Description"disabled class="form-control border-0 shadow"></textarea>
+                    <label asp-for="Description" class="ms-2"></label>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Price" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Price" class="ms-2"></label>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="btn btn-primary form-control shadow">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary form-control shadow">BackToList</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
