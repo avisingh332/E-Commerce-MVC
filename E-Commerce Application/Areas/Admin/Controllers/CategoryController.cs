@@ -78,16 +78,20 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
             return View(obj);
         }
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(Category? obj)
-        {
 
-            //Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
+        //public IActionResult DeletePOST(Category? obj) This can also be the case 
+        // it Does matching on the basis of the name of properties in Category
+        public IActionResult DeletePOST(int? id)
+        {
+            Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
             _unitOfWork.Category.Remove(obj);
             _unitOfWork.Save();
+            //return RedirectToAction("Index",controllerName: "Category");
+            TempData["success"] = "Category Deleted Successfully";
             return RedirectToAction("Index");
         }
     }
