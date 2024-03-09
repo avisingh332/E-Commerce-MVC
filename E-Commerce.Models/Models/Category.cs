@@ -9,7 +9,8 @@ namespace E_Commerce.Models.Models
         [Key]
         public int Id { get; set; }
 
-        [Required] [DisplayName("Category Name")]   
+        [DisplayName("Category Name")]
+        [Required]
         public string Name { get; set; }
         
         [DisplayName("Category Display Order")]
