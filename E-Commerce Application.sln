@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Web", "E-Commerce Application\E-Commerce.Web.csproj", "{4165BE26-FF9D-4F06-9234-494B45F00660}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Web", "E-Commerce Application\E-Commerce.Web.csproj", "{4165BE26-FF9D-4F06-9234-494B45F00660}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Models", "E-Commerce.Models\E-Commerce.Models.csproj", "{F218F942-7105-47FC-8A3A-B4B823CD3344}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Models", "E-Commerce.Models\E-Commerce.Models.csproj", "{F218F942-7105-47FC-8A3A-B4B823CD3344}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.DataAccess", "E-Commerce.DataAccess\E-Commerce.DataAccess.csproj", "{A18B2BFD-B50B-4CCE-A782-1F645B021BF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.DataAccess", "E-Commerce.DataAccess\E-Commerce.DataAccess.csproj", "{A18B2BFD-B50B-4CCE-A782-1F645B021BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Utility", "E-Commerce.Utility\E-Commerce.Utility.csproj", "{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Utility", "E-Commerce.Utility\E-Commerce.Utility.csproj", "{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.RazorProject", "E-Commerce.RazorProject\E-Commerce.RazorProject.csproj", "{2D4A2261-0D1E-4647-838D-2D69CB66EF78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D4A2261-0D1E-4647-838D-2D69CB66EF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D4A2261-0D1E-4647-838D-2D69CB66EF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D4A2261-0D1E-4647-838D-2D69CB66EF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D4A2261-0D1E-4647-838D-2D69CB66EF78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
