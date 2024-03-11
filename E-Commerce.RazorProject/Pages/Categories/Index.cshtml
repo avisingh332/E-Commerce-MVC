@@ -35,21 +35,3 @@
         </table>
     </div>
 </div>
-
-<!-- it is one way of adding Toastr Notification
-    added the jQuery script because it is required for toastr notification to work 
-    then added the Cdn for Toastr
-    Style has been added into the _layout
--->
-
-@section Scripts{
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    @if (TempData["success"] != null)
-    {
-        <script type="text/javascript">
-            toastr.success('@TempData["success"]');
-        </script>
-        
-    }
-}
