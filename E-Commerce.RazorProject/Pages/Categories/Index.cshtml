@@ -1,4 +1,55 @@
 ﻿@page
 @model E_Commerce.RazorProject.Pages.Categories.IndexModel
-@{
+
+<div class = "container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <!--Note: here specifying routing is case insensitive-->
+            <a asp-page="/categories/create" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i>Create New Category</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th> Name</th>
+                <th> Display Order</th>
+            </thead>
+            <tbody>
+                @foreach(var obj in Model.CategoryList)
+                {
+                    <tr >
+                        <td>@obj.Name</td>
+                        <td>@obj.DisplayOrder</td>
+                        <td class ="d-flex justify-content-center">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-page="/categories/edit" asp-route-id ="@obj.Id" class=" btn btn-primary mx-2"><i class="bi bi-pencil-fill"></i>Edit</a>
+                                <a asp-page="/categories/delete" asp-route-id="@obj.Id" class=" btn btn-outline-secondary mx-2"> <i class="bi bi-x-circle"></i> Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- it is one way of adding Toastr Notification
+    added the jQuery script because it is required for toastr notification to work 
+    then added the Cdn for Toastr
+    Style has been added into the _layout
+-->
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    @if (TempData["success"] != null)
+    {
+        <script type="text/javascript">
+            toastr.success('@TempData["success"]');
+        </script>
+        
+    }
 }
