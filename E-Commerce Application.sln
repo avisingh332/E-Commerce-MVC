@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.DataAccess", "E-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Utility", "E-Commerce.Utility\E-Commerce.Utility.csproj", "{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.RazorProject", "E-Commerce.RazorProject\E-Commerce.RazorProject.csproj", "{2D4A2261-0D1E-4647-838D-2D69CB66EF78}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6B0EC63-56AE-4B24-ACDE-60AF11ABE820}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D4A2261-0D1E-4647-838D-2D69CB66EF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D4A2261-0D1E-4647-838D-2D69CB66EF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D4A2261-0D1E-4647-838D-2D69CB66EF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D4A2261-0D1E-4647-838D-2D69CB66EF78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
