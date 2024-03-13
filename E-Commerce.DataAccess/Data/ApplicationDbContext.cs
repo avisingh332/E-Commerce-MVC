@@ -36,7 +36,9 @@ namespace E_Commerce.DataAccess.Data
 
                Price50 = 85,
 
-               Price100 = 80
+               Price100 = 80,
+               
+               CategoryId=1
 
            },
 
@@ -60,7 +62,9 @@ namespace E_Commerce.DataAccess.Data
 
                     Price50 = 25,
 
-                    Price100 = 20
+                    Price100 = 20,
+
+                    CategoryId = 2
 
                 },
 
@@ -84,7 +88,8 @@ namespace E_Commerce.DataAccess.Data
 
                     Price50 = 40,
 
-                    Price100 = 35
+                    Price100 = 35,
+                    CategoryId = 3
 
                 },
 
@@ -108,7 +113,9 @@ namespace E_Commerce.DataAccess.Data
 
                     Price50 = 60,
 
-                    Price100 = 55
+                    Price100 = 55,
+
+                    CategoryId = 1
 
                 },
 
@@ -132,7 +139,9 @@ namespace E_Commerce.DataAccess.Data
 
                     Price50 = 25,
 
-                    Price100 = 20
+                    Price100 = 20,
+
+                    CategoryId = 2
 
                 },
 
@@ -156,7 +165,9 @@ namespace E_Commerce.DataAccess.Data
 
                     Price50 = 22,
 
-                    Price100 = 20
+                    Price100 = 20,
+                    
+                    CategoryId = 3
 
                 }
             );

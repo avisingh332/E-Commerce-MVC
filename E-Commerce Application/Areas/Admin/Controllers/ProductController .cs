@@ -36,7 +36,16 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
             //    CategoryList = CategoryList,
             //    Product = new Product()
             //};
+            var obj = _unitOfWork.Category.GetALL();
 
+            IEnumerable<SelectListItem> categorylist = obj.Select(u => new SelectListItem
+            {
+                Text = u.Name, Value = u.Id.ToString()
+            });
+            ViewBag.CategoryList = categorylist;
+            //or
+            // Using View Data
+            //ViewData["CategoryList"] = categorylist;
             return View();
         }
 
