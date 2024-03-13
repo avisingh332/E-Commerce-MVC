@@ -26,40 +26,43 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            //IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetALL().Select(u => new SelectListItem
-            //{
-            //    Text = u.Name,
-            //    Value = u.Id.ToString()
-            //});
-            //ProductVM productVm = new ProductVM
-            //{
-            //    CategoryList = CategoryList,
-            //    Product = new Product()
-            //};
-            var obj = _unitOfWork.Category.GetALL();
-
-            IEnumerable<SelectListItem> categorylist = obj.Select(u => new SelectListItem
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetALL().Select(u => new SelectListItem
             {
-                Text = u.Name, Value = u.Id.ToString()
+                Text = u.Name,
+                Value = u.Id.ToString()
             });
-            ViewBag.CategoryList = categorylist;
-            //or
-            // Using View Data
-            //ViewData["CategoryList"] = categorylist;
-            return View();
+            ProductVM productVm = new ProductVM
+            {
+                CategoryList = CategoryList,
+                Product = new Product()
+            };
+            productVm.CategoryList = CategoryList;
+            return View(productVm);
         }
 
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Create(ProductVM productVM)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(obj);
+                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
-                TempData["success"] = "Product Created Successfully";
+                TempData["success"] = "Product Added Successfully";
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                //if model state is not valid we want to reload on the same page but 
+                //for that also we need to send the category list to the page 
+                IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetALL().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+                productVM.CategoryList = CategoryList;
+                return View(productVM);
+            }
+            
         }
 
         public IActionResult Edit(int? id)
@@ -73,19 +76,39 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
             {
                 return NotFound();  
             }
-            return View(productFromDb);
+            IEnumerable<SelectListItem> categoryList = _unitOfWork.Category.GetALL().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+            ProductVM productVM = new ProductVM
+            {
+                Product = productFromDb,
+                CategoryList = categoryList
+            };
+            return View(productVM);
         }
         [HttpPost]
-        public IActionResult Edit(Product obj)
+        public IActionResult Edit(ProductVM productVM)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Update(obj);
+                _unitOfWork.Product.Update(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product Updated Successfully ";
-                return RedirectToAction("Index");   
+                return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                productVM.CategoryList = _unitOfWork.Category.GetALL().Select(u => new SelectListItem
+                {
+                    Text = u.Name, 
+                    Value= u.Id.ToString()
+                });
+
+                return View(productVM);
+            }
+            
         }
         public IActionResult Delete(int? id)
         {
@@ -99,7 +122,16 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
                 TempData["error"] = "Product Not Found";
                 return NotFound();
             }
-            return View(productFromDb);
+            ProductVM productVM = new ProductVM
+            {
+                Product = productFromDb,
+                CategoryList = _unitOfWork.Category.GetALL().Select(u=>new SelectListItem
+                {
+                    Text=u.Name,
+                    Value = u.Id.ToString()   
+                })
+            };
+            return View(productVM); 
         }
 
         [HttpPost,ActionName("Delete")]

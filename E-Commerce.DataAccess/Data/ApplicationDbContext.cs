@@ -38,7 +38,9 @@ namespace E_Commerce.DataAccess.Data
 
                Price100 = 80,
                
-               CategoryId=1
+               CategoryId=1,
+               
+               ImageUrl=""
 
            },
 
@@ -64,7 +66,8 @@ namespace E_Commerce.DataAccess.Data
 
                     Price100 = 20,
 
-                    CategoryId = 2
+                    CategoryId = 2,
+                    ImageUrl = ""
 
                 },
 
@@ -89,7 +92,8 @@ namespace E_Commerce.DataAccess.Data
                     Price50 = 40,
 
                     Price100 = 35,
-                    CategoryId = 3
+                    CategoryId = 3,
+                    ImageUrl = ""
 
                 },
 
@@ -115,7 +119,8 @@ namespace E_Commerce.DataAccess.Data
 
                     Price100 = 55,
 
-                    CategoryId = 1
+                    CategoryId = 1,
+                    ImageUrl = ""
 
                 },
 
@@ -141,7 +146,8 @@ namespace E_Commerce.DataAccess.Data
 
                     Price100 = 20,
 
-                    CategoryId = 2
+                    CategoryId = 2,
+                    ImageUrl = ""
 
                 },
 
@@ -167,7 +173,8 @@ namespace E_Commerce.DataAccess.Data
 
                     Price100 = 20,
                     
-                    CategoryId = 3
+                    CategoryId = 3,
+                    ImageUrl = ""
 
                 }
             );
