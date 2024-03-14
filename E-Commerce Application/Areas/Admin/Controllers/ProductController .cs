@@ -21,13 +21,13 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Product> objProductList = _unitOfWork.Product.GetALL().ToList();
+            List<Product> objProductList = _unitOfWork.Product.GetALL(includeProperties:"Category").ToList();
             return View(objProductList);
         }
 
         public IActionResult Upsert(int? id)
         {
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetALL().Select(u => new SelectListItem
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetALL(includeProperties:"Category").Select(u => new SelectListItem
             {
                 Text = u.Name,
                 Value = u.Id.ToString()
@@ -44,7 +44,7 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
             }
             else
             {
-                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
+                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id, includeProperties:"Category");
                 return View(productVM);
             }
         }

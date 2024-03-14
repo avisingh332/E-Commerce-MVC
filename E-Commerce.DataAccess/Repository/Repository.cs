@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace E_Commerce.DataAccess.Repository
 {
@@ -27,15 +28,33 @@ namespace E_Commerce.DataAccess.Repository
             dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
-            T obj = dbSet.FirstOrDefault(filter);
-            return obj;
+            IQueryable<T> query = dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (string includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            
+            return query.FirstOrDefault(filter); 
         }
 
-        public IEnumerable<T> GetALL()
+        // we 
+        public IEnumerable<T> GetALL(string? includeProperties =null)
         {
-            return dbSet.ToList();
+            IQueryable<T> query = dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                //foreach (string prop in includeProperties.Split(',' , StringSplitOptions.RemoveEmptyEntries))
+                foreach (string includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) 
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            return query.ToList();
         }
 
         public void Remove(T entity)
