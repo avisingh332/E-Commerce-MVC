@@ -13,9 +13,10 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;   
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -49,17 +50,49 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Upsert(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(productVM.Product);
+                if (file != null)
+                {
+                    string rootPath = _webHostEnvironment.WebRootPath;
+                    //generate a new file name 
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    var productPath = Path.Combine(rootPath, @"images\product");
+                    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                    {
+                        // Image already exist and we want to update that image 
+                        // so we need to delete the old image
+
+                        var oldImagePath = Path.Combine(rootPath, productVM.Product.ImageUrl.TrimStart('\\'));
+                        if(System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+                    //now create a file stream and use it 
+                    using( var fileSteam = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileSteam);
+                    }
+                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
+                   
+                }
+                if (productVM.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productVM.Product);
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(productVM.Product);
+                }
                 _unitOfWork.Save();
                 TempData["success"] = "Product Added Successfully";
                 return RedirectToAction("Index");
             }
             else
-            {
+            {   
                 //if model state is not valid we want to reload on the same page but 
                 //for that also we need to send the category list to the page 
                 IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetALL().Select(u => new SelectListItem
