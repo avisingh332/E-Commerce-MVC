@@ -27,7 +27,7 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetALL(includeProperties:"Category").Select(u => new SelectListItem
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetALL().Select(u => new SelectListItem
             {
                 Text = u.Name,
                 Value = u.Id.ToString()
@@ -146,5 +146,14 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
             TempData["success"] = "Product Deleted Successfully";
             return RedirectToAction("Index");    
         }
+
+        #region API CALLs
+        [HttpGet]
+        public  IActionResult GetAll()
+        {
+            List<Product> objProductList = _unitOfWork.Product.GetALL(includeProperties: "Category").ToList();
+            return Json(new {data = objProductList});
+        }
+        #endregion
     }
 }
