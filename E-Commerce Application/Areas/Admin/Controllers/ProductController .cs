@@ -155,8 +155,9 @@ namespace E_Commerce_Application.Areas.Admin.Controllers
             return Json(new {data = objProductList});
         }
 
-        //Here we can't use HttpDelete or HttpPost Here We can only use HttpGet Because We are Reciving request Directly from an anchor tag
-        [HttpGet]
+        //Here we can't use HttpDelete or HttpPost if a invoking this using href of anchor we are forced to use httpget
+        // But when Making a http delete ajax request through js then we need to use httpDelete
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
 
