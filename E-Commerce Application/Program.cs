@@ -14,6 +14,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServe
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Default Lockout settings.
+    //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    //options.Lockout.MaxFailedAccessAttempts = 5;
+    //options.Lockout.AllowedForNewUsers = true;
+    options.Password.RequireDigit = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireUppercase = false;
+
+});
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddRazorPages();
