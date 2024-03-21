@@ -1,6 +1,8 @@
 ﻿using E_Commerce.DataAccess.Repository.IRepository;
 using E_Commerce.Models.Models;
 using E_Commerce.Models.ViewModels;
+using E_Commerce.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json.Linq;
@@ -9,6 +11,8 @@ using System.Data;
 namespace E_Commerce_Application.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    //[Authorize(Roles = $"{SD.Role_Admin},{SD.Role_Customer}")]
+    [Authorize(Roles =SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
