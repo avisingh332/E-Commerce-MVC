@@ -1,7 +1,9 @@
 using E_Commerce.DataAccess.Data;
 using E_Commerce.DataAccess.Repository;
 using E_Commerce.DataAccess.Repository.IRepository;
+using E_Commerce.Utility;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>()
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -28,7 +31,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
